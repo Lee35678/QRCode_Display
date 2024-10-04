@@ -1,18 +1,19 @@
 #include <Arduino.h>
+#include <TFT_eSPI.h>
+#include <qrcode_espi.h>
 
-// put function declarations here:
-int myFunction(int, int);
+TFT_eSPI display = TFT_eSPI();
+QRcode_eSPI qrcode (&display);
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  display.begin();
+  qrcode.init();
+  //char msg[] = "Hello World!";
+  //char msg[] = "https://google.com/";
+  //char msg[] = "WIFI:S:YourAP;;;;";
+  char msg[] = "WIFI:S:MyAP;T:WEP;P:youdonknow;;";
+  qrcode.create(msg);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
 }
